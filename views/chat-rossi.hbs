@@ -1,0 +1,53 @@
+<div class="container">
+    <div class="row">
+        <div class="col d-flex justify-content-center align-items-center">
+            <h3>Chat Rossi</h3>
+        </div>
+    </div>
+</div>
+
+<script src="https://www.gstatic.com/dialogflow-console/fast/df-messenger/prod/v1/df-messenger.js"></script>
+
+<style>
+  df-messenger {
+    z-index: 999;
+    position: fixed;
+    bottom: 16px;
+    right: 16px;
+  }
+</style>
+
+
+<script>
+  function crearDFMessenger() {
+
+    // Limpiar todo el sessionStorage
+    sessionStorage.clear();
+
+    // Elimina el df-messenger actual si existe
+    const dfMessengerExistente = document.querySelector('df-messenger');
+    if (dfMessengerExistente) {
+      dfMessengerExistente.remove();
+    }
+
+    // Crea una nueva instancia de df-messenger
+    const nuevoDFMessenger = document.createElement('df-messenger');
+    nuevoDFMessenger.setAttribute('project-id', 'td-0001');
+    nuevoDFMessenger.setAttribute('agent-id', '6aa0e660-f51a-4566-b34f-72a8791705e8');
+    nuevoDFMessenger.setAttribute('language-code', 'es');
+
+    // Crea una instancia de df-messenger-chat-bubble
+    const chatBubble = document.createElement('df-messenger-chat-bubble');
+    chatBubble.setAttribute('chat-title', 'Asistente Rossi');
+
+    // Añade el chat bubble al df-messenger
+    nuevoDFMessenger.appendChild(chatBubble);
+
+    // Añade el nuevo df-messenger al DOM
+    document.body.appendChild(nuevoDFMessenger);
+  }
+
+  // Inicializa df-messenger cuando la página carga
+  window.onload = crearDFMessenger;
+</script>
+
